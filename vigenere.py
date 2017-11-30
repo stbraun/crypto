@@ -13,6 +13,13 @@ class Vigenere:
 
     This implementation works for characters, numbers and some punctuation
     marks: see plain_alphabet.
+
+    v = V("secret")
+    with open("README.md") as fi, open("cipher", "w") as fo: fo.write(
+    v.encrypt(fi.read()))
+    with open("cipher") as fi, open("decipher", "w") as fo: fo.write(
+    v.decrypt(fi.read()))
+
     """
 
     def __init__(self, key):
@@ -53,7 +60,7 @@ class Vigenere:
                 cipher_alphabet = self.__find_alphabet(kc)
                 cipher.append(cipher_alphabet[p_idx])
             except (
-            ValueError):  # Happens if unsupported characters are in the
+                ValueError):  # Happens if unsupported characters are in the
                 # plain text.
                 pass
         return ''.join(cipher)
